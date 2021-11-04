@@ -1,0 +1,250 @@
+---
+title: "STA130H1S -- Fall 2021"
+author: "L. Bolton & S. Caetano"
+subtitle: Module 7 Problem Set
+output:
+  pdf_document: default
+---
+
+```{r, echo=FALSE, include=FALSE}
+library(tidyverse)
+library(knitr)
+
+opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+# Instructions
+
+## How do I hand in these problems for the 11:59 a.m. ET, November 18th deadline?
+
+Your complete .Rmd file that you create for this problem set AND the resulting .pdf (i.e., the one you 'Knit to PDF' from your .Rmd file) must be uploaded into a Quercus assignment (link:[https://q.utoronto.ca/courses/235890/assignments/736449](https://q.utoronto.ca/courses/235890/assignments/736449)) by 11:59 a.m. ET, on November 18th. Late problem sets or problems submitted another way (e.g., by email) are *not* accepted.
+
+
+# Problem set grading
+
+There are two parts to your problem set. One is largely R-based with short written answers and the other is more focused on writing. We recommend you use a word processing software like Microsoft Word to check for grammar errors in your written work. Note: there can be issues copying from Word to R Markdown so it may be easier to write in this file first and then copy the text to Word. Then you can make any changes flagged in Word directly in this file.
+  
+\newpage 
+
+# Part 1
+
+
+## Question 1
+
+In this demo, we'll look at some information regarding song recommendations made by STA130 students on the Mid-semester feedback survey. This data was collected based off the names of the songs provided in the survey, and the additional info was extracted via the Spotify API. More information on the data descriptions can be found here [https://count.co/n/OqA2ey7ZvI5](https://count.co/n/OqA2ey7ZvI5).
+
+```{r}
+library(tidyverse)
+songs <- read_csv("STA130_F21_songrecommendations.csv")
+glimpse(songs)
+```
+
+
+###(a) The variable mode is a categorical variable where 0 is if the song is in minor scale and 1 is if the song is in major scale. Let's re-write this variable (`mode`) using `mutate()` so that a 0 will now be recorded as "minor" and a 1 will be "major".
+
+```{r}
+
+
+```
+
+
+###(b) Create a visualization to explore the association between the energy, the mode, and the danceability. Describe the association between these variables. 
+
+```{r}
+
+
+```
+
+
+
+###(c) Divide the dataset into training (80%) and testing (20%) datasets. 
+
+```{r}
+set.seed(4) # set to the date of your birthday (e.g. April 4 would be set.seed(4))
+
+
+```
+
+###(d) Fit a linear regression model (mod1) to predict the danceability of a song based only on the energy. Interpret the slope of this fitted regression line. Use the training data to fit this model
+```{r}
+
+
+```
+
+
+
+###(e) Based on these data, is the slope of this linear regression model significantly different from 0?
+
+
+###(f) Next, fit a new linear regression model (mod2) to predict the to predict the danceability of a song with mode as the only predictor, again based on the training data.
+
+```{r}
+
+```
+
+###(g) How can we interpret the estimated intercept (beta0-hat) and the estimated slope (beta1-hat) in model 2? 
+
+
+###(h) Based on these data, is there a difference between the mean danceability levels of major and minor scale songs?
+
+
+
+###(i) Next, fit two new linear regression models (based on the training data) with both `energy` and `mode` as predictors: a parallel lines model (mod3) and model allowing for non-parallel lines (mod4).
+
+```{r}
+
+```
+
+###(j) Use each of your four models to make predictions for the danceability of a minor scaled song with 0.6 energy level.
+
+```{r}
+
+```
+
+
+
+
+
+###(k) Use each of the four models you've built in previous parts (models 1, 2, 3, and 4), to make predictions for both the testing data and the training data, and calculate the RMSEs in each case.  Which of the models do you think is most suitable for prediction?
+
+```{r}
+# Make predictions for testing data
+
+       
+```
+
+
+
+\newpage
+## Question 2
+
+In this question, we will visit the Mario Kart data. This dataset contains eBay sales of the game Mario Kart for Nintendo Wii in October 2009 and is available in the `openintro` R package; the dataset is loaded in the code chunk below (note that we will exclude observations with `total_pr` larger than 100, because from the documentation of the dataset, we know that these very high-priced items were for bundles of several games, not just the Mario Kart game.)
+
+```{r}
+mariokart <- read_csv("mariokart.csv")
+mariokart2 <- mariokart %>% filter(total_pr < 100)
+```
+
+
+(a)  Sellers on eBay have the option to include a stock photo as the illustration of the product for sale.  Does this choice affect the selling price?  
+Carry out a regression analysis and predict the mean selling price (`total_pr`) for sellers who do and do not use stock photos.  *Note: I started by filtering out observations with `total_pr` greater than 100 (see the last R chunk) because they correspond to cases where the game was sold in a bundle with other items; for this question we want to focus only on observations where the game was sold on its own.*
+    
+```{r}
+
+```
+    
+
+    
+
+
+(b)  Sellers are rated by buyers on eBay, captured in the variable `seller_rating`.  To simplify our analysis, we will categorize sellers by whether their rating is low, medium or high.  Create a new variable called `seller_rating` that is "low" if `seller_rating` is less than or equal to 200, "medium" if it is greater than 200 but less than or equal to 4500, and "high" if it is greater than 4500.  Carry out a regression analysis to predict `total_pr` using the new variable `seller_rating`.  
+
+```{r}
+
+```
+
+  
+(b)i)  How many indicator variables are in the model? Describe these indicator variables.
+    
+There are 2: `seller_ratinglow` that is 1 if `seller_rating` is low and 0 otherwise, and `seller_ratingmedium` that is 1 if  `seller_rating` is medium and 0 otherwise.
+    
+(b)ii) Which seller rating group is `R` treating as the baseline category?
+    
+R is treating the high category of `seller_rating` as the baseline category.
+    
+(b)iii)  What is the estimate from the fitted regression line for the mean `total_pr`  for sellers with low ratings?  What is the estimate from the fitted regression line for the mean `total_pr`  for sellers with medium ratings?  What is the estimate from the fitted regression line for the mean `total_pr`  for sellers with high ratings?
+
+(b)iv) Create boxplots of `total_pr` for each category of seller.  Is this visualization consistent with your estimates in the previous parts?
+```{r}
+
+```
+
+
+
+(c) Now produce an appropriate plot and fit an appropriate regression line to examine whether `seller_rating` has an effect on the relationship between `total_pr` and `duration`. 
+
+The regression model is
+
+\begin{align*}
+total_pr &=\beta_0+\beta_1 seller\_rating\_is\_low + \beta_2 seller\_rating\_is\_medium + \beta_3 duration \\ 
+&+ \beta_4 seller\_rating\_is\_low \times duration + \beta_5 seller\_rating\_is\_medium \times duration + \epsilon
+\end{align*}
+
+
+```{r}
+
+```
+
+(c)i) What is the equation of the fitted regression line for sellers with low ratings?
+    
+
+    
+(c)ii) What is the equation of the fitted regression line for sellers with medium ratings?
+    
+
+    
+(c)iii) What is the equation of the fitted regression line for sellers with high ratings?
+    
+
+
+(d) Does seller rating modify the association between duration and total price? Write 1-2 sentences explaining your answer.
+
+
+(e) Divide the data into testing and training datasets (use the last 3 digits of your Student ID as the seed, with 80% of observations for training) and fit the linear regression models for total price, with the following variables as predictors (using the training dataset):
+
+   i. `stock_photo`
+   ii. `stock_photo`, `duration`, and their interaction
+   iii. `seller_rating`
+   iv. `stock_photo`, `seller_rating`, and their interaction
+   v. `stock_photo`, `seller_rating`, `duration`, and all interaction terms
+
+```{r}
+set.seed(112) # set this to the last three digits of your student number
+
+
+```
+   
+(f) Calculate the RMSE for each of the five models from part (e), for both the training and testing datasets.  
+
+```{r}
+
+```
+
+
+\newpage 
+
+# Part 2 (Oral Submission)
+
+
+Prior to starting the activity, you must review the videos on [Plagiarism](https://q.utoronto.ca/courses/235890/pages/m7-problem-set-7-plagiarism-video?module_item_id=3109467) and [Hedging](https://q.utoronto.ca/courses/235890/pages/m7-problem-set-7-hedging-video-copy?module_item_id=3109473) which can be found in Module 7. These videos goes over the 6 most common types of plagiarism and how to avoid them.  
+
+Once you have watched the video, please read the following article: Pellegrini et al (2020) "Relationship between stress and weight management behaviors during the COVID‐19 pandemic among those enrolled in an internet program". This article is available in Module 7  on quercus (link: [https://q.utoronto.ca/courses/235890/pages/m7-problem-set-7-paper](https://q.utoronto.ca/courses/235890/pages/m7-problem-set-7-paper)) and the paper should also be available as a pdf in the Jupyterhub Module 7 folder.  
+
+Once you have watched the videos and read the artcile, you will prepare a brief video providing a summary of the above study. Make sure you explain the following, at a minimum:  
+
+- Objective: What were the authors interested in studying?  
+
+- Methods: What type of study design was used? Who were the participants? What statistical tests were used?  
+
+- Results: What were the main findings of the study? Make sure you support any statements with facts (e.g. proportions, p-values, etc.).  
+
+- Conclusions: What were the main take away messages? Were there any important limitations to the study?  
+
+ 
+Deliverable: You will be REQUIRED to submit a 4 to 5 minute video OR voice clip of you answering the above prompt. You should include a LINK (i.e., url) that the TA can click into to view/listen to the video/clip.
+
+Somethings to keep in mind:
+
+- Do not feel the need to do tons of 'takes'. Rather, you can repeat yourself if you make a mistake, or feel you are unclear. This is not meant to be an additional burden, but rather to provide you with the opportunity to practice your oral communication skills and get a break from writing.   
+
+- You might be wondering how can I record this? One way to do this would be to schedule a Zoom meeting and record yourself in it. You can record the video to the cloud, or even directly on your computer! There will be many file types, including a video version, and one that is just a voice recording.   
+
+- You MUST upload a link (aka a URL) for your TA to watch your video. You can do this by uploading your video to mymedia, MS Stream, YouTube, etc. Alternatively, you can provide the zoom cloud link from your recording. ONLY links will be reviewed by the TA, we are not accepting mp4 or clip uploads.
+
+- Please ensure that there is NO password protection on the video/link. The TA should be able to just "click the link" and "watch the video" (i.e., they should NOT need to type in a password).
+
+- If you are looking for more ideas of how to record yourself for this assignment or run into issues on how to upload your assignment, please post to Piazza.  
+
+
+
+

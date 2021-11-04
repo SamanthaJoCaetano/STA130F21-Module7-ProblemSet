@@ -22,7 +22,7 @@ Your complete .Rmd file that you create for this problem set AND the resulting .
 
 # Problem set grading
 
-There are two parts to your problem set. One is largely R-based with short written answers and the other is more focused on writing. We recommend you use a word processing software like Microsoft Word to check for grammar errors in your written work. Note: there can be issues copying from Word to R Markdown so it may be easier to write in this file first and then copy the text to Word. Then you can make any changes flagged in Word directly in this file.
+There are two parts to your problem set. One is largely R-based with short written answers and the other is more focused on communication. We recommend you use a word processing software like Microsoft Word to check for grammar errors in your written work. Note: there can be issues copying from Word to R Markdown so it may be easier to write in this file first and then copy the text to Word. Then you can make any changes flagged in Word directly in this file.
   
 \newpage 
 
@@ -40,7 +40,7 @@ glimpse(songs)
 ```
 
 
-###(a) The variable mode is a categorical variable where 0 is if the song is in minor scale and 1 is if the song is in major scale. Let's re-write this variable (`mode`) using `mutate()` so that a 0 will now be recorded as "minor" and a 1 will be "major".
+### (a) The variable mode is a categorical variable where 0 is if the song is in minor scale and 1 is if the song is in major scale. Let's re-write this variable (`mode`) using `mutate()` so that a 0 will now be recorded as "minor" and a 1 will be "major".
 
 ```{r}
 
@@ -48,7 +48,7 @@ glimpse(songs)
 ```
 
 
-###(b) Create a visualization to explore the association between the energy, the mode, and the danceability. Describe the association between these variables. 
+### (b) Create a visualization to explore the association between the energy, the mode, and the danceability. Describe the association between these variables. 
 
 ```{r}
 
@@ -57,7 +57,7 @@ glimpse(songs)
 
 
 
-###(c) Divide the dataset into training (80%) and testing (20%) datasets. 
+### (c) Divide the dataset into training (80%) and testing (20%) datasets. 
 
 ```{r}
 set.seed(4) # set to the date of your birthday (e.g. April 4 would be set.seed(4))
@@ -65,7 +65,7 @@ set.seed(4) # set to the date of your birthday (e.g. April 4 would be set.seed(4
 
 ```
 
-###(d) Fit a linear regression model (mod1) to predict the danceability of a song based only on the energy. Interpret the slope of this fitted regression line. Use the training data to fit this model
+### (d) Fit a linear regression model (mod1) to predict the danceability of a song based only on the energy. Interpret the slope of this fitted regression line. Use the training data to fit this model
 ```{r}
 
 
@@ -73,29 +73,29 @@ set.seed(4) # set to the date of your birthday (e.g. April 4 would be set.seed(4
 
 
 
-###(e) Based on these data, is the slope of this linear regression model significantly different from 0?
+### (e) Based on these data, is the slope of this linear regression model significantly different from 0?
 
 
-###(f) Next, fit a new linear regression model (mod2) to predict the to predict the danceability of a song with mode as the only predictor, again based on the training data.
-
-```{r}
-
-```
-
-###(g) How can we interpret the estimated intercept (beta0-hat) and the estimated slope (beta1-hat) in model 2? 
-
-
-###(h) Based on these data, is there a difference between the mean danceability levels of major and minor scale songs?
-
-
-
-###(i) Next, fit two new linear regression models (based on the training data) with both `energy` and `mode` as predictors: a parallel lines model (mod3) and model allowing for non-parallel lines (mod4).
+### (f) Next, fit a new linear regression model (mod2) to predict the danceability of a song with mode as the only predictor, again based on the training data.
 
 ```{r}
 
 ```
 
-###(j) Use each of your four models to make predictions for the danceability of a minor scaled song with 0.6 energy level.
+### (g) How can we interpret the estimated intercept (beta0-hat) and the estimated slope (beta1-hat) in model 2? 
+
+
+### (h) Based on these data, is there a difference between the mean danceability levels of major and minor scale songs?
+
+
+
+### (i) Next, fit two new linear regression models (based on the training data) with both `energy` and `mode` as predictors: a parallel lines model (mod3) and model allowing for non-parallel lines (mod4).
+
+```{r}
+
+```
+
+### (j) Use each of your four models to make predictions for the danceability of a minor scaled song with 0.6 energy level.
 
 ```{r}
 
@@ -105,7 +105,7 @@ set.seed(4) # set to the date of your birthday (e.g. April 4 would be set.seed(4
 
 
 
-###(k) Use each of the four models you've built in previous parts (models 1, 2, 3, and 4), to make predictions for both the testing data and the training data, and calculate the RMSEs in each case.  Which of the models do you think is most suitable for prediction?
+### (k) Use each of the four models you've built in previous parts (models 1, 2, 3, and 4), to make predictions for both the testing data and the training data, and calculate the RMSEs in each case.  Which of the models do you think is most suitable for prediction?
 
 ```{r}
 # Make predictions for testing data
@@ -126,7 +126,7 @@ mariokart2 <- mariokart %>% filter(total_pr < 100)
 ```
 
 
-(a)  Sellers on eBay have the option to include a stock photo as the illustration of the product for sale.  Does this choice affect the selling price?  
+### (a)  Sellers on eBay have the option to include a stock photo as the illustration of the product for sale.  Does this choice affect the selling price?  
 Carry out a regression analysis and predict the mean selling price (`total_pr`) for sellers who do and do not use stock photos.  *Note: I started by filtering out observations with `total_pr` greater than 100 (see the last R chunk) because they correspond to cases where the game was sold in a bundle with other items; for this question we want to focus only on observations where the game was sold on its own.*
     
 ```{r}
@@ -137,31 +137,31 @@ Carry out a regression analysis and predict the mean selling price (`total_pr`) 
     
 
 
-(b)  Sellers are rated by buyers on eBay, captured in the variable `seller_rating`.  To simplify our analysis, we will categorize sellers by whether their rating is low, medium or high.  Create a new variable called `seller_rating` that is "low" if `seller_rating` is less than or equal to 200, "medium" if it is greater than 200 but less than or equal to 4500, and "high" if it is greater than 4500.  Carry out a regression analysis to predict `total_pr` using the new variable `seller_rating`.  
+### (b)  Sellers are rated by buyers on eBay, captured in the variable `seller_rating`.  To simplify our analysis, we will categorize sellers by whether their rating is low, medium or high.  Create a new variable called `seller_rating` that is "low" if `seller_rating` is less than or equal to 200, "medium" if it is greater than 200 but less than or equal to 4500, and "high" if it is greater than 4500.  Carry out a regression analysis to predict `total_pr` using the new variable `seller_rating`.  
 
 ```{r}
 
 ```
 
   
-(b)i)  How many indicator variables are in the model? Describe these indicator variables.
+### (b)i)  How many indicator variables are in the model? Describe these indicator variables.
     
 There are 2: `seller_ratinglow` that is 1 if `seller_rating` is low and 0 otherwise, and `seller_ratingmedium` that is 1 if  `seller_rating` is medium and 0 otherwise.
     
-(b)ii) Which seller rating group is `R` treating as the baseline category?
+### (b)ii) Which seller rating group is `R` treating as the baseline category?
     
 R is treating the high category of `seller_rating` as the baseline category.
     
-(b)iii)  What is the estimate from the fitted regression line for the mean `total_pr`  for sellers with low ratings?  What is the estimate from the fitted regression line for the mean `total_pr`  for sellers with medium ratings?  What is the estimate from the fitted regression line for the mean `total_pr`  for sellers with high ratings?
+### (b)iii)  What is the estimate from the fitted regression line for the mean `total_pr`  for sellers with low ratings?  What is the estimate from the fitted regression line for the mean `total_pr`  for sellers with medium ratings?  What is the estimate from the fitted regression line for the mean `total_pr`  for sellers with high ratings?
 
-(b)iv) Create boxplots of `total_pr` for each category of seller.  Is this visualization consistent with your estimates in the previous parts?
+### (b)iv) Create boxplots of `total_pr` for each category of seller.  Is this visualization consistent with your estimates in the previous parts?
 ```{r}
 
 ```
 
 
 
-(c) Now produce an appropriate plot and fit an appropriate regression line to examine whether `seller_rating` has an effect on the relationship between `total_pr` and `duration`. 
+### (c) Now produce an appropriate plot and fit an appropriate regression line to examine whether `seller_rating` has an effect on the relationship between `total_pr` and `duration`. 
 
 The regression model is
 
@@ -175,22 +175,22 @@ total_pr &=\beta_0+\beta_1 seller\_rating\_is\_low + \beta_2 seller\_rating\_is\
 
 ```
 
-(c)i) What is the equation of the fitted regression line for sellers with low ratings?
+### (c)i) What is the equation of the fitted regression line for sellers with low ratings?
     
 
     
-(c)ii) What is the equation of the fitted regression line for sellers with medium ratings?
+### (c)ii) What is the equation of the fitted regression line for sellers with medium ratings?
     
 
     
-(c)iii) What is the equation of the fitted regression line for sellers with high ratings?
+### (c)iii) What is the equation of the fitted regression line for sellers with high ratings?
     
 
 
-(d) Does seller rating modify the association between duration and total price? Write 1-2 sentences explaining your answer.
+### (d) Does seller rating modify the association between duration and total price? Write 1-2 sentences explaining your answer.
 
 
-(e) Divide the data into testing and training datasets (use the last 3 digits of your Student ID as the seed, with 80% of observations for training) and fit the linear regression models for total price, with the following variables as predictors (using the training dataset):
+### (e) Divide the data into testing and training datasets (use the last 3 digits of your Student ID as the seed, with 80% of observations for training) and fit the linear regression models for total price, with the following variables as predictors (using the training dataset):
 
    i. `stock_photo`
    ii. `stock_photo`, `duration`, and their interaction
@@ -204,7 +204,7 @@ set.seed(112) # set this to the last three digits of your student number
 
 ```
    
-(f) Calculate the RMSE for each of the five models from part (e), for both the training and testing datasets.  
+### (f) Calculate the RMSE for each of the five models from part (e), for both the training and testing datasets.  
 
 ```{r}
 
